@@ -1,5 +1,5 @@
 import firebase from 'firebase';
-import { IFlightInfo } from '@flights/modules/actions';
+import {IFlightInfo, ITicket} from '@flights/modules/actions';
 import DataSnapshot = firebase.database.DataSnapshot;
 
 export const flightsAPI = {
@@ -19,7 +19,7 @@ export const flightsAPI = {
     return firebase.database();
   },
 
-  async getFlightsByPrice(start = 0, end = Infinity, isAscending = true, limit = 5): Promise<Array<IFlightInfo> | void> {
+  async getFlightsByPrice(start = 0, end = 10000000, isAscending = true, limit = 30): Promise<Array<ITicket> | void> {
     try {
       let snapShot: DataSnapshot;
 
@@ -39,7 +39,7 @@ export const flightsAPI = {
           .once('value');
       }
 
-      const flights: Array<IFlightInfo> = [];
+      const flights: Array<ITicket> = [];
 
       // Метод обьекта snapshot(не Array.prototype) для того чтобы
       // вернуть элементы в правильном порядке

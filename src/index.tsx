@@ -30,6 +30,8 @@ export type AppState = {
 };
 // =================================================================================
 class App extends Component<AppProps, AppState> {
+  public setAppState :Component['setState'];
+
   constructor(props: any) {
     super(props);
     this.state = {
@@ -41,6 +43,7 @@ class App extends Component<AppProps, AppState> {
       company: '',
       byTime: false,
     };
+    this.setAppState = this.setState.bind(this);
   }
 
   componentDidMount(): void {
@@ -50,7 +53,7 @@ class App extends Component<AppProps, AppState> {
   render() {
     return (
       <Flights
-          setAppState={this.setState.bind(this)}
+        setAppState={this.setAppState}
         isAscendingPrice={this.state.isAscendingPrice}
         limit={this.state.limit}
         isStop={this.state.isStop}

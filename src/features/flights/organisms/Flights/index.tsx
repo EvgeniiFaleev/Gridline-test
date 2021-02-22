@@ -2,6 +2,7 @@ import { Component } from 'react';
 import * as React from 'react';
 import { Filter } from '@flights/organisms/Filter';
 import { AppState } from 'index';
+import { Tickets } from '@flights/organisms/Tickets';
 import styles from './Flights.module.scss';
 
 export interface IFlightsProps extends AppState{
@@ -21,7 +22,7 @@ export class Flights extends Component<IFlightsProps> {
           company={this.props.company}
           byTime={this.props.byTime}
         />
-        <div className={styles.wrapper}> gdgfdgdfgdf</div>
+        <Tickets />
       </>
     );
   }

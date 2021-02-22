@@ -8,15 +8,24 @@ export interface IArrivalDepartureInfo {
   uid: string
 }
 
-export interface ILegInfo {
+export interface ISegment {
   arrivalAirport :IArrivalDepartureInfo
   arrivalCity:IArrivalDepartureInfo
   arrivalDate: string
   departureAirport :IArrivalDepartureInfo
   departureCity : IArrivalDepartureInfo
+  airline: {
+    airlineCode:string
+    caption: string
+  }
   departureDate: string
   stops: number
   travelDuration: number
+}
+
+export interface ILegInfo {
+  duration: number
+  segments: Array<ISegment>
 }
 
 export interface IFlightInfo{
@@ -32,12 +41,17 @@ export interface IFlightInfo{
     }
   }
 }
-
-interface IAddFlightsAction extends Action<typeof types.ADD_FLIGHTS>{
-  payload:Array<IFlightInfo>
+export interface ITicket{
+  flight: IFlightInfo
+  flightToken: string
 }
 
-export const addFlights = (payload: Array<IFlightInfo>):IAddFlightsAction => ({
+
+interface IAddFlightsAction extends Action<typeof types.ADD_FLIGHTS>{
+  payload:Array<ITicket>
+}
+
+export const addFlights = (payload: Array<ITicket>):IAddFlightsAction => ({
   payload,
   type: types.ADD_FLIGHTS,
 });

@@ -1,13 +1,13 @@
 import { Reducer } from 'redux';
 import * as types from './types';
-import { FlightsActionsType, IFlightInfo } from './actions';
+import { FlightsActionsType, ITicket } from './actions';
 
 const initialState = {
   tickets: [],
 };
 
 type FlightsStateType = {
-  tickets: Array<IFlightInfo> | []
+  tickets: Array<ITicket>
 };
 
 export const reducer: Reducer<FlightsStateType, FlightsActionsType> = (state = initialState,
