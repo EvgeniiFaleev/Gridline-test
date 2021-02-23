@@ -5,6 +5,7 @@ import { connect, ConnectedProps, Provider } from 'react-redux';
 import { store } from '@store/store';
 import { DispatchType, RootState } from '@store/root-reducer';
 import './App.module.scss';
+import {flightsAPI} from "@api/API";
 
 const MapStateToProps = (state: RootState) => (
   {
@@ -47,7 +48,8 @@ class App extends Component<AppProps, AppState> {
   }
 
   componentDidMount(): void {
-    this.props.getTicketOrderByPrice();
+     this.props.getTicketOrderByPrice();
+
   }
 
   render() {

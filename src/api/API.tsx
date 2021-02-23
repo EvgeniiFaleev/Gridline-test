@@ -1,5 +1,5 @@
 import firebase from 'firebase';
-import {IFlightInfo, ITicket} from '@flights/modules/actions';
+import { IFlightInfo, ITicket } from '@flights/modules/actions';
 import DataSnapshot = firebase.database.DataSnapshot;
 
 export const flightsAPI = {
@@ -19,7 +19,7 @@ export const flightsAPI = {
     return firebase.database();
   },
 
-  async getFlightsByPrice(start = 0, end = 10000000, isAscending = true, limit = 30): Promise<Array<ITicket> | void> {
+  async getFlightsByPrice(start = 0, end = 10000000, isAscending = true, limit = 2 ): Promise<Array<ITicket> | void> {
     try {
       let snapShot: DataSnapshot;
 
@@ -44,7 +44,6 @@ export const flightsAPI = {
       // Метод обьекта snapshot(не Array.prototype) для того чтобы
       // вернуть элементы в правильном порядке
       snapShot.forEach((child) => {
-        console.log('price', child.val().flight.price.total.amount);
         flights.push(child.val());
         return false;
       });
@@ -53,4 +52,25 @@ export const flightsAPI = {
       console.log('Ошибка при запросе', e);
     }
   },
+  // async getFlightsWithStops(): Promise<Array<ITicket> | void> {
+  //   try {
+  //
+  //     const snapShot = await this.getDatabase().ref('result/flights')
+  //       .orderByChild('flight/legs/1/segments/1/stops').equalTo(1)
+  //
+  //       .once('value');
+  //
+  //     const flights: Array<ITicket> = [];
+  //
+  //
+  //     snapShot.forEach((child) => {
+  //       console.log('price', child.val().flight);
+  //       flights.push(child.val());
+  //       return false;
+  //     });
+  //     return flights;
+  //   } catch (e) {
+  //     console.log('Ошибка при запросе', e);
+  //   }
+  // },
 };

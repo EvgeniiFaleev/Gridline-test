@@ -1,0 +1,58 @@
+.segment {
+  padding: 10px 0;
+  font-family: "Times New Roman", sans-serif;
+
+  .departure {
+    padding: 10px 20px;
+    border-bottom: 1px solid lightgray;
+    font-size: 18px;
+
+    svg {
+      margin: 0 10px;
+      color: #0087c9;
+    }
+  }
+
+  span {
+    color: #0087c9;
+  }
+
+  .time {
+    width: 100%;
+    font-size: 21px;
+    display: flex;
+    padding: 10px 20px;
+    align-items: center;
+    justify-content: space-between;
+    .month{
+      font-size: 16px;
+      margin-left: 5px;
+    }
+    img {
+      width: 15px;
+      margin-right: 5px;
+    }
+  }
+
+  .stop {
+    position: relative;
+
+    hr {
+      width: 80%;
+      margin: 10px auto;
+    }
+
+    p {
+      background-color: white;
+      padding: 0 15px;
+      color: #ffb168;
+      top: -10px;
+      left: 45%;
+      position: absolute;
+    }
+  }
+
+  .airline {
+    padding: 0 20px;
+  }
+}
