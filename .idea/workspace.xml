@@ -2,16 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="76908a5e-7a54-4c82-948d-feefec9e2b2b" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/features/flights/atoms/Preloader/Preloader.module.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/flights/atoms/Preloader/index.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/flights/helper.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/api/API.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/API.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/flights/modules/actions.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/flights/modules/actions.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/flights/organisms/Flights/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/flights/organisms/Flights/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/flights/organisms/Tickets/Tickets.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/flights/organisms/Tickets/Tickets.module.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/flights/organisms/Tickets/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/flights/organisms/Tickets/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/App.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.module.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/features/flights/organisms/Filter/Filter.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/flights/organisms/Filter/Filter.module.scss" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -47,7 +41,7 @@
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="js.linters.configure.manually.selectedeslint" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/features/flights/atoms" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="list.type.of.created.stylesheet" value="SCSS" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.standard" value="true" />
@@ -63,19 +57,19 @@
     <property name="ts.external.directory.path" value="D:\webpack-test2\node_modules\typescript\lib" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="D:\webpack-test2\src\features\flights\atoms" />
-      <recent name="D:\webpack-test2\src\ui\images" />
-      <recent name="D:\webpack-test2\src\ui" />
-      <recent name="D:\webpack-test2\src\features\flights" />
-      <recent name="D:\webpack-test2\src" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="D:\webpack-test2\src\ui\images" />
       <recent name="D:\webpack-test2\src\features\flights\organisms" />
       <recent name="D:\webpack-test2\src\features\flights\molecules" />
       <recent name="D:\webpack-test2\src\ui\molecules" />
       <recent name="D:\webpack-test2\src\ui\organisms" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\webpack-test2" />
+      <recent name="D:\webpack-test2\src\features\flights\atoms" />
+      <recent name="D:\webpack-test2\src\ui\images" />
+      <recent name="D:\webpack-test2\src\ui" />
+      <recent name="D:\webpack-test2\src\features\flights" />
     </key>
   </component>
   <component name="RunDashboard">
