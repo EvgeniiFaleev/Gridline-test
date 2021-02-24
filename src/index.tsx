@@ -22,7 +22,7 @@ const mapDispatchToProps = (dispatch: DispatchType) => ({
       (start? : number, end? :number, isAscending?: boolean,
         isStop?: boolean | undefined, company?: string, limit? :number) => dispatch(flightsActions.getFlightsByPrice(start, end, isAscending, isStop, company, limit)),
 
-  getFlightsByTimeAmount: (start? : number, end?: number, isStop?: boolean, company?: string, limit?: number) => dispatch(flightsActions.getFlightsByTime(start, end,isStop, company, limit)),
+  getFlightsByTimeAmount: (start? : number, end?: number, isStop?: boolean, company?: string, limit?: number) => dispatch(flightsActions.getFlightsByTime(start, end, isStop, company, limit)),
 });
 
 const connector = connect(MapStateToProps, mapDispatchToProps);
@@ -49,9 +49,22 @@ const firebaseConfig = {
   measurementId: 'G-3XY9Z2PSRK',
 };
 
+const debounce = (fn: ()=> void, time: number) => {
+  let timer: NodeJS.Timeout;
+
+  return () => {
+    clearTimeout(timer);
+    timer = setTimeout(() => {
+      fn();
+    }, time);
+  };
+};
+
 // =================================================================================
 class App extends Component<AppProps, AppState> {
   public setAppState :Component['setState'];
+
+  public debounceUpdate : ()=>void;
 
   constructor(props: any) {
     super(props);
@@ -65,6 +78,17 @@ class App extends Component<AppProps, AppState> {
       byTime: false,
     };
     this.setAppState = this.setState.bind(this);
+    this.debounceUpdate = debounce(() => {
+      if (this.state.byTime) {
+        this.props.getFlightsByTimeAmount(this.state.minPrice, this.state.maxPrice, this.state.isStop, this.state.company, this.state.limit);
+        return;
+      }
+
+      if (this.state.isAscendingPrice !== undefined) {
+        this.props.getTicketOrderByPrice(this.state.minPrice,
+          this.state.maxPrice, this.state.isAscendingPrice, this.state.isStop, this.state.company, this.state.limit);
+      }
+    }, 1000);
   }
 
   componentDidMount(): void {
@@ -74,16 +98,7 @@ class App extends Component<AppProps, AppState> {
 
   componentDidUpdate(prevProps: Readonly<AppProps>, prevState: Readonly<AppState>): void {
     if (shallowEqual(prevState, this.state)) return;
-
-    if (this.state.byTime) {
-      this.props.getFlightsByTimeAmount(this.state.minPrice, this.state.maxPrice, this.state.isStop, this.state.company, this.state.limit);
-      return;
-    }
-
-    if (this.state.isAscendingPrice !== undefined) {
-      this.props.getTicketOrderByPrice(this.state.minPrice,
-        this.state.maxPrice, this.state.isAscendingPrice, this.state.isStop, this.state.company, this.state.limit);
-    }
+    this.debounceUpdate();
   }
 
   render() {

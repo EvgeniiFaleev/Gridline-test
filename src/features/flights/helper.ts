@@ -1,6 +1,6 @@
-import {ITicket} from "@flights/modules/actions";
+import { ITicket } from '@flights/modules/actions';
 
-const filterByCompanyAndStops = (ticket: ITicket, arrForSortedTicket: Array<ITicket>, company: string, isStop: boolean | undefined) => {
+export const filterByCompanyAndStops = (ticket: ITicket, arrForSortedTicket: Array<ITicket>, company: string, isStop: boolean | undefined) => {
   if (isStop !== undefined && company) {
     if (!!(ticket.flight.legs[0].segments[0].stops && ticket.flight.legs[0].segments[1].stops) === !!isStop) {
       if (company === ticket.flight.carrier.airlineCode) {

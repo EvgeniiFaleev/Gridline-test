@@ -2,7 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="76908a5e-7a54-4c82-948d-feefec9e2b2b" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/api/API.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/API.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/features/flights/helper.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/flights/helper.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.tsx" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -129,6 +132,8 @@
       <workItem from="1613905388851" duration="18913000" />
       <workItem from="1613993736112" duration="29741000" />
       <workItem from="1614074942766" duration="59908000" />
+      <workItem from="1614156601986" duration="1871000" />
+      <workItem from="1614161213208" duration="1235000" />
     </task>
     <servers />
   </component>

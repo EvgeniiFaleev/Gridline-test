@@ -1,10 +1,11 @@
 import firebase from 'firebase';
 import { ITicket } from '@flights/modules/actions';
+import { filterByCompanyAndStops } from '@flights/helper';
 import DataSnapshot = firebase.database.DataSnapshot;
 
 export const flightsAPI = {
 
-  async getFlightsByPrice(start = 0, end = 10000000, isAscending = true, isStop: boolean | undefined, company = '', limit = 2, queryLimit = 100): Promise<Array<ITicket> | void> {
+  async getFlightsByPrice(start = 0, end = 10000000, isAscending = true, isStop: boolean | undefined, company = '', limit = 2, queryLimit = 10): Promise<Array<ITicket> | void> {
     try {
       let snapShot: DataSnapshot;
 
@@ -31,31 +32,10 @@ export const flightsAPI = {
       // Метод обьекта snapshot(не Array.prototype) для того чтобы
       // вернуть элементы в правильном порядке
       snapShot.forEach((child) => {
-        const { flight } = child.val();
-        lastItem = flight.price.total.amount;
+        const ticket = child.val();
+        lastItem = ticket.flight.price.total.amount;
         console.log(lastItem);
-        if (isStop !== undefined && company) {
-          if (!!(flight.legs[0].segments[0].stops && flight.legs[0].segments[1].stops) === !!isStop) {
-            if (company === flight.carrier.airlineCode) {
-              flights.push(child.val());
-              return false;
-            }
-          }
-        }
-        if (company === flight.carrier.airlineCode && isStop === undefined) {
-          flights.push(child.val());
-          return false;
-        }
-        if (isStop !== undefined && !company) {
-          if (!!(flight.legs[0].segments[0].stops && flight.legs[0].segments[1].stops) === !!isStop) {
-            flights.push(child.val());
-            return false;
-          }
-        }
-        if ((isStop === undefined) && !company) {
-          flights.push(child.val());
-          return false;
-        }
+        return filterByCompanyAndStops(ticket, flights, company, isStop);
       });
 
       if (flights.length >= 2) {
@@ -71,7 +51,7 @@ export const flightsAPI = {
     }
   },
 
-  async getFlightsByTimeAmount(startPrice = 0, endPrice = 10000000, isStop: boolean | undefined, company = '', limit = 2, queryLimit = 100, startItem = 0): Promise<Array<ITicket> | void> {
+  async getFlightsByTimeAmount(startPrice = 0, endPrice = 10000000, isStop: boolean | undefined, company = '', limit = 2, queryLimit = 10, startItem = 0): Promise<Array<ITicket> | void> {
     try {
       const snapShot = await firebase.database().ref('result/flights')
         .orderByChild('flight/legs/0/segments/0/travelDuration')
@@ -79,7 +59,8 @@ export const flightsAPI = {
         .startAt(startItem)
         .once('value');
 
-      if (snapShot.numChildren() < queryLimit) return [];
+      if (snapShot.numChildren() < 1 || queryLimit > 400) return [];
+      // if (snapShot.numChildren() < queryLimit) return [];
 
       const flights: Array<ITicket> = [];
       let lastItem = 0;
@@ -87,37 +68,15 @@ export const flightsAPI = {
       // вернуть элементы в правильном порядке
 
       snapShot.forEach((child) => {
-        const { flight } = child.val();
-        if (flight.price.total.amount >= startPrice && flight.price.total.amount <= endPrice) {
-          if (isStop !== undefined && company) {
-            if (!!(flight.legs[0].segments[0].stops && flight.legs[0].segments[1].stops) === !!isStop) {
-
-              if (company === flight.carrier.airlineCode) {
-                flights.push(child.val());
-                return false;
-              }
-            }
-          }
-          if (company === flight.carrier.airlineCode && isStop === undefined) {
-            flights.push(child.val());
-            return false;
-          }
-          if (isStop !== undefined && !company) {
-            if (!!(flight.legs[0].segments[0].stops && flight.legs[0].segments[1].stops) === !!isStop) {
-              flights.push(child.val());
-              return false;
-            }
-          }
-          if (isStop === undefined && !company) {
-            flights.push(child.val());
-            return false;
-          }
+        const ticket = child.val();
+        if (ticket.flight.price.total.amount >= startPrice && ticket.flight.price.total.amount <= endPrice) {
+          return filterByCompanyAndStops(ticket, flights, company, isStop);
         }
-        lastItem = flight.legs[0].segments[0].travelDuration;
+        lastItem = ticket.flight.legs[0].segments[0].travelDuration;
       });
 
       if (flights.length >= 2) return flights.slice(0, limit);
-      const newPortion = await this.getFlightsByTimeAmount(startPrice, endPrice, isStop, company, limit, queryLimit, lastItem) as Array<ITicket>;
+      const newPortion = await this.getFlightsByTimeAmount(startPrice, endPrice, isStop, company, limit, queryLimit + 100, lastItem) as Array<ITicket>;
       return [...flights, ...newPortion].slice(0, limit);
     } catch (e) {
       console.log('Ошибка при запросе', e);
