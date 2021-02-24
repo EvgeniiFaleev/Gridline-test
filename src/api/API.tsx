@@ -1,76 +1,106 @@
 import firebase from 'firebase';
-import { IFlightInfo, ITicket } from '@flights/modules/actions';
+import { ITicket } from '@flights/modules/actions';
 import DataSnapshot = firebase.database.DataSnapshot;
 
 export const flightsAPI = {
-  firebaseConfig: {
-    apiKey: 'AIzaSyC67eSySeUaRlqngLdxr4cGWkjDJzYGhQA',
-    authDomain: 'avia-6087a.firebaseapp.com',
-    databaseURL: 'https://avia-6087a-default-rtdb.firebaseio.com',
-    projectId: 'avia-6087a',
-    storageBucket: 'avia-6087a.appspot.com',
-    messagingSenderId: '242128360452',
-    appId: '1:242128360452:web:a1c93789a790507f749151',
-    measurementId: 'G-3XY9Z2PSRK',
-  },
 
-  getDatabase(): firebase.database.Database {
-    firebase.initializeApp(this.firebaseConfig);
-    return firebase.database();
-  },
-
-  async getFlightsByPrice(start = 0, end = 10000000, isAscending = true, limit = 2 ): Promise<Array<ITicket> | void> {
+  async getFlightsByPrice(start = 0, end = 10000000, isAscending = true, isStop: boolean | undefined, company = '', limit = 2, queryLimit = 100): Promise<Array<ITicket> | void> {
     try {
       let snapShot: DataSnapshot;
 
       if (isAscending) {
-        snapShot = await this.getDatabase().ref('result/flights')
+        snapShot = await firebase.database().ref('result/flights')
           .orderByChild('flight/price/total/amount')
-          .limitToFirst(limit)
+          .limitToFirst(queryLimit)
           .startAt(start)
           .endAt(end)
           .once('value');
       } else {
-        snapShot = await this.getDatabase().ref('result/flights')
+        snapShot = await firebase.database().ref('result/flights')
           .orderByChild('flight/price/total/amount')
-          .limitToLast(limit)
+          .limitToLast(queryLimit)
           .startAt(start)
           .endAt(end)
           .once('value');
       }
-
+      const a = snapShot.numChildren();
+      debugger;
+      if (snapShot.numChildren() < queryLimit) return [];
       const flights: Array<ITicket> = [];
-
+      let lastItem = 0;
       // Метод обьекта snapshot(не Array.prototype) для того чтобы
       // вернуть элементы в правильном порядке
       snapShot.forEach((child) => {
-        flights.push(child.val());
-        return false;
+        const { flight } = child.val();
+        lastItem = flight.price.total.amount;
+
+        if (isStop !== undefined && company) {
+          if (!!(flight.legs[0].segments[0].stops && flight.legs[0].segments[1].stops) === !!isStop) {
+            debugger
+            if (company === flight.carrier.airlineCode) {
+              flights.push(child.val());
+              return false;
+            }
+          }
+        }
+        if (company === flight.carrier.airlineCode && isStop === undefined) {
+          flights.push(child.val());
+          return false;
+        }
+        if (isStop !== undefined && !company) {
+          if (!!(flight.legs[0].segments[0].stops && flight.legs[0].segments[1].stops) === !!isStop) {
+            flights.push(child.val());
+            return false;
+          }
+        }
+        if (isStop === undefined && !company) {
+          flights.push(child.val());
+          return false;
+        }
       });
-      return isAscending ? flights : flights.reverse();
+
+      if (flights.length >= 2) {
+        return isAscending ? flights.slice(0, limit) : flights.reverse().slice(0, limit);
+      }
+
+      const nextPortion = isAscending
+        ? await this.getFlightsByPrice(lastItem, end, isAscending, isStop, company, limit) as Array<ITicket>
+        : await this.getFlightsByPrice(0, end, isAscending, isStop, company, limit, queryLimit + 100) as Array<ITicket>;
+      return [...flights, ...nextPortion].slice(0, limit);
     } catch (e) {
       console.log('Ошибка при запросе', e);
     }
   },
-  // async getFlightsWithStops(): Promise<Array<ITicket> | void> {
-  //   try {
-  //
-  //     const snapShot = await this.getDatabase().ref('result/flights')
-  //       .orderByChild('flight/legs/1/segments/1/stops').equalTo(1)
-  //
-  //       .once('value');
-  //
-  //     const flights: Array<ITicket> = [];
-  //
-  //
-  //     snapShot.forEach((child) => {
-  //       console.log('price', child.val().flight);
-  //       flights.push(child.val());
-  //       return false;
-  //     });
-  //     return flights;
-  //   } catch (e) {
-  //     console.log('Ошибка при запросе', e);
-  //   }
-  // },
+
+  async getFlightsByTimeAmount(startPrice = 0, endPrice = 10000000, limit = 2, queryLimit = 100, startItem = 0): Promise<Array<ITicket> | void> {
+    try {
+      const snapShot = await firebase.database().ref('result/flights')
+        .orderByChild('flight/legs/0/segments/0/travelDuration')
+        .limitToFirst(queryLimit)
+        .startAt(startItem)
+        .once('value');
+
+      if (snapShot.numChildren() < queryLimit) return [];
+
+      const flights: Array<ITicket> = [];
+      let lastItem = 0;
+      // Метод обьекта snapshot(не Array.prototype) для того чтобы
+      // вернуть элементы в правильном порядке
+
+      snapShot.forEach((child) => {
+        const { flight } = child.val();
+        if (flight.price.total.amount >= startPrice && flight.price.total.amount <= endPrice) flights.push(child.val());
+        lastItem = flight.legs[0].segments[0].travelDuration;
+
+        if (flights.length === 2) return true;
+        return false;
+      });
+
+      if (flights.length === 2) return flights;
+      return this.getFlightsByTimeAmount(startPrice, endPrice, limit, queryLimit, lastItem);
+    } catch (e) {
+      console.log('Ошибка при запросе', e);
+    }
+  },
+
 };

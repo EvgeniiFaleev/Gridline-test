@@ -16,7 +16,7 @@ export const reducer: Reducer<FlightsStateType, FlightsActionsType> = (state = i
     case types.ADD_FLIGHTS:
       return {
         ...state,
-        tickets: [...state.tickets, ...action.payload],
+        tickets: [...action.payload],
       };
     default:
       return state;

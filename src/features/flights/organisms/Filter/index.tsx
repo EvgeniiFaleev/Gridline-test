@@ -11,56 +11,81 @@ export const Filter:FC<IFlightsProps> = ({
     <section>
       <p>Сортировать</p>
       <p>
-        <input
-          onChange={() => setAppState({
-            isAscendingPrice: true,
-            byTime: false,
-          })}
-          checked={isAscendingPrice && !byTime}
-          type="radio"
-        />
-        по возрастанию цены
+        <label>
+          <input
+            onChange={() => setAppState({
+              isAscendingPrice: true,
+              byTime: false,
+            })}
+            checked={!!isAscendingPrice && !byTime}
+            type="radio"
+          />
+          по возрастанию цены
+        </label>
       </p>
       <p>
-        <input onChange={() => setAppState({ isAscendingPrice: false, byTime: false })} checked={!isAscendingPrice && !byTime} type="radio" />
-        по убыванию цены
+        <label>
+          <input
+            onChange={() => setAppState({
+              isAscendingPrice: false,
+              byTime: false,
+            })}
+            checked={!isAscendingPrice && !byTime}
+            type="radio"
+          />
+          по убыванию цены
+        </label>
       </p>
       <p>
-        <input onChange={() => setAppState({ byTime: true })} checked={byTime} type="radio" />
-        по времени в пути
+        <label>
+          <input
+            onChange={() => setAppState({
+              byTime: true,
+              isAscendingPrice: undefined,
+            })}
+            checked={byTime}
+            type="radio"
+          />
+          по времени в пути
+        </label>
       </p>
     </section>
     <section>
       <p>Фильтровать</p>
       <p>
-        <input
-          checked={isStop}
-          onChange={() => {
-            if (isStop) {
-              setAppState({ isStop: undefined });
-            } else {
-              setAppState({ isStop: true });
-            }
-          }}
-          type="checkbox"
-        />
-        1 пересадка
+        <label>
+          <input
+            checked={isStop}
+            onChange={() => {
+              if (isStop) {
+                setAppState({ isStop: undefined });
+              } else {
+                setAppState({ isStop: true });
+              }
+            }}
+            type="checkbox"
+          />
+          1 пересадка
+        </label>
       </p>
       <p>
-        <input
-          checked={!isStop && isStop !== undefined}
-          onChange={() => {
-            if (isStop) {
-              setAppState({ isStop: false });
-            } else if (isStop === undefined) {
-              setAppState({ isStop: false });
-            } if (!isStop && isStop !== undefined) {
-              setAppState({ isStop: undefined });
-            }
-          }}
-          type="checkbox"
-        />
-        без пересадок
+        <label>
+          <input
+            checked={!isStop && isStop !== undefined}
+            onChange={() => {
+              if (isStop) {
+                setAppState({ isStop: false });
+              } else if (isStop === undefined) {
+                setAppState({ isStop: false });
+              }
+              if (!isStop && isStop !== undefined) {
+                setAppState({ isStop: undefined });
+              }
+            }}
+            type="checkbox"
+          />
+          без пересадок
+        </label>
       </p>
     </section>
     <section>
@@ -97,37 +122,41 @@ export const Filter:FC<IFlightsProps> = ({
     <section>
       <p>Авиакомпании</p>
       <p>
-        <input
-          checked={company === 'Lot'}
-          onChange={() => {
-            if (company === 'Lot') {
-              setAppState({
-                company: '',
-              });
-            } else {
-              setAppState({ company: 'Lot' });
-            }
-          }}
+        <label>
+          <input
+            checked={company === 'LO'}
+            onChange={() => {
+              if (company === 'LO') {
+                setAppState({
+                  company: '',
+                });
+              } else {
+                setAppState({ company: 'LO' });
+              }
+            }}
 
-          type="checkbox"
-        />
-        Lot
+            type="checkbox"
+          />
+          Lot
+        </label>
       </p>
       <p>
-        <input
-          checked={company === 'Aэрофлот'}
-          onChange={() => {
-            if (company === 'Aэрофлот') {
-              setAppState({
-                company: '',
-              });
-            } else {
-              setAppState({ company: 'Aэрофлот' });
-            }
-          }}
-          type="checkbox"
-        />
-        Аэрофлот
+        <label>
+          <input
+            checked={company === 'SU'}
+            onChange={() => {
+              if (company === 'SU') {
+                setAppState({
+                  company: '',
+                });
+              } else {
+                setAppState({ company: 'SU' });
+              }
+            }}
+            type="checkbox"
+          />
+          Аэрофлот
+        </label>
       </p>
     </section>
   </aside>

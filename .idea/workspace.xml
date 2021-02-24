@@ -2,20 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="76908a5e-7a54-4c82-948d-feefec9e2b2b" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/features/flights/atoms/Segment/Segment.module.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/flights/atoms/Segment/index.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/ui/images/Logo.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/ui/images/aeroflot.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/ui/images/airline-japan.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/ui/images/clock.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/api/API.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/API.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/custom.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/custom.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/features/flights/atoms/Segment/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/flights/atoms/Segment/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/features/flights/modules/actions.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/flights/modules/actions.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/features/flights/modules/reducer.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/flights/modules/reducer.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/features/flights/molecules/Ticket/Ticket.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/flights/molecules/Ticket/Ticket.module.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/features/flights/molecules/Ticket/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/flights/molecules/Ticket/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/flights/organisms/Tickets/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/flights/organisms/Tickets/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/features/flights/organisms/Filter/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/flights/organisms/Filter/index.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.tsx" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -142,7 +136,7 @@
       <workItem from="1613865100013" duration="163000" />
       <workItem from="1613905388851" duration="18913000" />
       <workItem from="1613993736112" duration="29741000" />
-      <workItem from="1614074942766" duration="24385000" />
+      <workItem from="1614074942766" duration="49721000" />
     </task>
     <servers />
   </component>

@@ -10,7 +10,7 @@
     padding: 10px 0;
     cursor: pointer;
   }
-  .first_segment{
+  .first_segment > div:first-child{
     border-bottom: 3px solid #0087c9;
   }
   .head{

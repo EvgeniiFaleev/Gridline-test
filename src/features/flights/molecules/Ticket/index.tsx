@@ -15,7 +15,7 @@ export const Ticket:FC<IFlightInfo> = ({
     total: {
       amount,
     },
-  }, legs: [bad, { segments }],
+  }, legs: [{ segments }],
 }) => {
   let image = placeholder_logo;
   if (airlineCode === 'LO') image = lot;
@@ -32,8 +32,10 @@ export const Ticket:FC<IFlightInfo> = ({
           <p>Стоимость для одного взрослого пассажира</p>
         </div>
       </h3>
-      <div className={styles.first_segment}><Segment {...segments[0]} /></div>
-      <Segment {...segments[1]} />
+      <div className={segments[1] ? styles.first_segment : ''}>
+        {segments[0] ? <Segment {...segments[0]} /> : null}
+        { segments[1] ? <Segment {...segments[1]} /> : null}
+      </div>
       <input type="button" className={styles.choose} value="Выбрать" />
     </div>
 

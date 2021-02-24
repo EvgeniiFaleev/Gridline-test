@@ -7,10 +7,7 @@ import moment from 'moment';
 import styles from './Segment.module.scss';
 
 const removeDuplicate = (city: string, airport: string) => (city === airport ? ` ${airport} ` : ` ${city}, ${airport} `);
-//
-// const months = ["янв.","фев.", "март", "апр.", "май", "июнь", "июль", "авг.",
-//   "сент.", "окт.", "нояб.", "дек."];
-// const days =['пн',"вт","ср","чт",]
+
 
 const editDate = (date: string): Array<string> => moment(Date.parse(date))
   .locale('ru')
