@@ -2,14 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="76908a5e-7a54-4c82-948d-feefec9e2b2b" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/features/flights/atoms/Preloader/Preloader.module.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/features/flights/atoms/Preloader/index.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/features/flights/helper.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/api/API.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/API.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/flights/atoms/Segment/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/flights/atoms/Segment/index.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/features/flights/modules/actions.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/flights/modules/actions.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/flights/modules/reducer.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/flights/modules/reducer.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/flights/molecules/Ticket/Ticket.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/flights/molecules/Ticket/Ticket.module.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/flights/molecules/Ticket/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/flights/molecules/Ticket/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/flights/organisms/Filter/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/flights/organisms/Filter/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/features/flights/organisms/Flights/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/flights/organisms/Flights/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/features/flights/organisms/Tickets/Tickets.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/flights/organisms/Tickets/Tickets.module.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/features/flights/organisms/Tickets/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/flights/organisms/Tickets/index.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.tsx" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -46,7 +47,7 @@
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="js.linters.configure.manually.selectedeslint" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/ui/images" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/features/flights/atoms" />
     <property name="list.type.of.created.stylesheet" value="SCSS" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.standard" value="true" />
@@ -63,11 +64,11 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\webpack-test2\src\features\flights\atoms" />
       <recent name="D:\webpack-test2\src\ui\images" />
       <recent name="D:\webpack-test2\src\ui" />
       <recent name="D:\webpack-test2\src\features\flights" />
       <recent name="D:\webpack-test2\src" />
-      <recent name="D:\webpack-test2" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="D:\webpack-test2\src\ui\images" />
@@ -136,7 +137,7 @@
       <workItem from="1613865100013" duration="163000" />
       <workItem from="1613905388851" duration="18913000" />
       <workItem from="1613993736112" duration="29741000" />
-      <workItem from="1614074942766" duration="49721000" />
+      <workItem from="1614074942766" duration="59908000" />
     </task>
     <servers />
   </component>

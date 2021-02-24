@@ -60,9 +60,9 @@ export const getFlightsByPrice = (start? : number, end? : number, isAscending?: 
   if (response) dispatch(addFlights(response));
 };
 
-export const getFlightsByTime = (start? : number, end? : number, limit?: number): ThunkType<Promise<string | void>> => async (dispatch) => {
-  const response = await flightsAPI.getFlightsByTimeAmount(start, end, limit);
-  debugger;
+export const getFlightsByTime = (start? : number, end? : number, isStop?: boolean | undefined, company? : string, limit?: number): ThunkType<Promise<string | void>> => async (dispatch) => {
+  const response = await flightsAPI.getFlightsByTimeAmount(start, end, isStop, company, limit);
+
   if (response) dispatch(addFlights(response));
 };
 

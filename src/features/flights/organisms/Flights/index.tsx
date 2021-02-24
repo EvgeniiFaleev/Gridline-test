@@ -22,7 +22,7 @@ export class Flights extends Component<IFlightsProps> {
           company={this.props.company}
           byTime={this.props.byTime}
         />
-        <Tickets />
+        <Tickets setAppState={this.props.setAppState}/>
       </>
     );
   }

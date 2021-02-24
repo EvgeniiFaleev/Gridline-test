@@ -22,7 +22,7 @@ const mapDispatchToProps = (dispatch: DispatchType) => ({
       (start? : number, end? :number, isAscending?: boolean,
         isStop?: boolean | undefined, company?: string, limit? :number) => dispatch(flightsActions.getFlightsByPrice(start, end, isAscending, isStop, company, limit)),
 
-  getFlightsByTimeAmount: (start? : number, end?: number, limit?: number) => dispatch(flightsActions.getFlightsByTime(start, end, limit)),
+  getFlightsByTimeAmount: (start? : number, end?: number, isStop?: boolean, company?: string, limit?: number) => dispatch(flightsActions.getFlightsByTime(start, end,isStop, company, limit)),
 });
 
 const connector = connect(MapStateToProps, mapDispatchToProps);
@@ -76,7 +76,7 @@ class App extends Component<AppProps, AppState> {
     if (shallowEqual(prevState, this.state)) return;
 
     if (this.state.byTime) {
-      this.props.getFlightsByTimeAmount(this.state.minPrice, this.state.maxPrice, this.state.limit);
+      this.props.getFlightsByTimeAmount(this.state.minPrice, this.state.maxPrice, this.state.isStop, this.state.company, this.state.limit);
       return;
     }
 
