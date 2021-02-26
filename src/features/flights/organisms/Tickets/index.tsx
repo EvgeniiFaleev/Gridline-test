@@ -4,8 +4,8 @@ import { RootState } from '@store/root-reducer';
 import { Ticket } from '@flights/molecules/Ticket';
 import { ITicket } from '@flights/modules/actions';
 import { AppState } from 'index';
+import { Preloader } from '@flights/atoms/Preloader';
 import styles from './Tickets.module.scss';
-import {Preloader} from "@flights/atoms/Preloader";
 
 interface ITicketsProps {
   setAppState: Component['setState']
@@ -13,7 +13,7 @@ interface ITicketsProps {
 export const Tickets:FC<ITicketsProps> = ({ setAppState }) => {
   const tickets = useSelector((state:RootState) => state.flights.tickets);
 
-  const ticketsElemts = tickets.map((item: ITicket) => <Ticket {...item.flight} />);
+  const ticketsElemts = tickets.map((item: ITicket) => <Ticket {...item.flight} key={item.flightToken} />);
 
   return (
     <>
@@ -28,7 +28,7 @@ export const Tickets:FC<ITicketsProps> = ({ setAppState }) => {
               onClick={() => setAppState((prevState: AppState) => ({ limit: prevState.limit + 2 }))}
             />
           </main>
-        ) : <Preloader/>}
+        ) : <Preloader />}
     </>
   );
 };
