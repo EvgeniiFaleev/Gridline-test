@@ -10,7 +10,6 @@ import styles from './Ticket.module.scss';
 export const Ticket:FC<IFlightInfo> = ({
   carrier: {
     airlineCode,
-    caption,
   }, price: {
     total: {
       amount,
